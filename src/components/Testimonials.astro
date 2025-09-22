@@ -1,0 +1,447 @@
+---
+// TestimonialsBar.astro
+
+// Datos de testimonios - puedes moverlos a un archivo JSON o CMS
+const testimonials = [
+  {
+    id: 1,
+    name: "María González",
+    position: "CEO, TechCorp",
+    company: "TechCorp Solutions",
+    avatar: "/src/assets/avatars/maria.jpg", // Reemplaza con tus imágenes
+    content: "Excelente servicio, superaron todas nuestras expectativas. El equipo es muy profesional y eficiente.",
+    rating: 5,
+    date: "2024-09-15"
+  },
+  {
+    id: 2,
+    name: "Carlos Rodríguez",
+    position: "Director de Operaciones",
+    company: "Logistics Pro",
+    avatar: "/src/assets/avatars/carlos.jpg",
+    content: "La mejor decisión que tomamos fue trabajar con ellos. Resultados increíbles en tiempo récord.",
+    rating: 5,
+    date: "2024-09-10"
+  },
+  {
+    id: 3,
+    name: "Ana Martínez",
+    position: "Gerente de Proyectos",
+    company: "BuildMax",
+    avatar: "/src/assets/avatars/ana.jpg",
+    content: "Profesionalismo y calidad en cada detalle. Altamente recomendados para cualquier proyecto.",
+    rating: 5,
+    date: "2024-09-08"
+  },
+  {
+    id: 4,
+    name: "Roberto Silva",
+    position: "Fundador",
+    company: "InnovaCorp",
+    avatar: "/src/assets/avatars/roberto.jpg",
+    content: "Transformaron completamente nuestra visión. El resultado final fue mejor de lo que imaginamos.",
+    rating: 5,
+    date: "2024-09-05"
+  },
+  {
+    id: 5,
+    name: "Laura Fernández",
+    position: "VP Marketing",
+    company: "Growth Agency",
+    avatar: "/src/assets/avatars/laura.jpg",
+    content: "Trabajo impecable y atención al detalle excepcional. Definitivamente volveremos a trabajar juntos.",
+    rating: 5,
+    date: "2024-09-01"
+  },
+  {
+    id: 6,
+    name: "Diego Morales",
+    position: "CTO",
+    company: "DataFlow",
+    avatar: "/src/assets/avatars/diego.jpg",
+    content: "Su expertise técnico y creatividad nos ayudó a alcanzar objetivos que parecían imposibles.",
+    rating: 5,
+    date: "2024-08-28"
+  }
+];
+
+// Función para generar estrellas
+const generateStars = (rating: number) => {
+  return Array(5).fill(0).map((_, i) => i < rating ? '★' : '☆').join('');
+};
+---
+
+<section id="testimonials" class="testimonials-bar py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+  <div class="mx-auto w-[92%] max-w-7xl">
+    
+    <!-- Section Header -->
+    <header class="text-center mb-12">
+      <p class="text-xs tracking-[.18em] font-semibold text-blue-600 uppercase mb-4">
+        Testimonials
+      </p>
+      <h2 class="split-text text-slate-900 font-black tracking-tight text-[clamp(32px,5vw,48px)] leading-[1.1] mb-6">
+        What Our Clients Say
+      </h2>
+      <p class="split-text text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+        Discover how we've helped businesses transform their operations and achieve exceptional results.
+      </p>
+    </header>
+
+    <!-- Testimonials Carousel -->
+    <div class="testimonials-carousel relative">
+      
+      <!-- Navigation Buttons -->
+      <button 
+        class="nav-btn prev-btn absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-slate-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        aria-label="Testimonio anterior"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      
+      <button 
+        class="nav-btn next-btn absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-slate-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        aria-label="Siguiente testimonio"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Testimonials Container -->
+      <div class="testimonials-track flex transition-transform duration-500 ease-out gap-6 px-12">
+        {testimonials.map((testimonial, index) => (
+          <article 
+            class="testimonial-card min-w-[350px] md:min-w-[400px] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative group"
+            data-index={index}
+          >
+            
+            <!-- Quote Icon -->
+            <div class="absolute top-6 right-6 text-blue-100 group-hover:text-blue-200 transition-colors duration-300">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+              </svg>
+            </div>
+
+            <!-- Rating -->
+            <div class="flex items-center mb-4">
+              <span class="text-yellow-400 text-lg tracking-wider">
+                {generateStars(testimonial.rating)}
+              </span>
+              <span class="ml-2 text-sm text-slate-500">
+                {testimonial.rating}/5
+              </span>
+            </div>
+
+            <!-- Content -->
+            <blockquote class="text-slate-700 leading-relaxed mb-6 text-base">
+              "{testimonial.content}"
+            </blockquote>
+
+            <!-- Author Info -->
+            <footer class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                {testimonial.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 text-sm">
+                  {testimonial.name}
+                </h4>
+                <p class="text-slate-600 text-xs">
+                  {testimonial.position}
+                </p>
+                <p class="text-blue-600 text-xs font-medium">
+                  {testimonial.company}
+                </p>
+              </div>
+            </footer>
+
+            <!-- Gradient Border Effect -->
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Indicators -->
+      <div class="flex justify-center mt-8 gap-2">
+        {testimonials.map((_, index) => (
+          <button 
+            class="indicator w-3 h-3 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"
+            data-slide={index}
+            aria-label={`Ir al testimonio ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-200">
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-black text-blue-600 mb-2">150+</div>
+        <div class="text-sm text-slate-600 font-medium">Proyectos Completados</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-black text-blue-600 mb-2">98%</div>
+        <div class="text-sm text-slate-600 font-medium">Satisfacción del Cliente</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-black text-blue-600 mb-2">5★</div>
+        <div class="text-sm text-slate-600 font-medium">Calificación Promedio</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl md:text-4xl font-black text-blue-600 mb-2">24/7</div>
+        <div class="text-sm text-slate-600 font-medium">Soporte Disponible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-track {
+    will-change: transform;
+  }
+
+  .testimonial-card {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05));
+    border-radius: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .testimonial-card:hover::before {
+    opacity: 1;
+  }
+
+  .indicator.active {
+    background: #3b82f6;
+    transform: scale(1.2);
+  }
+
+  .nav-btn {
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .testimonials-track {
+      gap: 1rem;
+      padding: 0 3rem;
+    }
+    
+    .testimonial-card {
+      min-width: 280px;
+    }
+  }
+
+  /* Animation classes for scroll effects */
+  .split-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script is:inline>
+  class TestimonialsCarousel {
+    constructor() {
+      this.track = document.querySelector('.testimonials-track');
+      this.cards = document.querySelectorAll('.testimonial-card');
+      this.indicators = document.querySelectorAll('.indicator');
+      this.prevBtn = document.querySelector('.prev-btn');
+      this.nextBtn = document.querySelector('.next-btn');
+      
+      this.currentSlide = 0;
+      this.maxSlides = this.cards.length;
+      this.cardWidth = 400; // Ancho base de la tarjeta + gap
+      this.slidesToShow = this.getSlidesToShow();
+      this.autoplayInterval = null;
+      
+      this.init();
+    }
+
+    getSlidesToShow() {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+
+    init() {
+      this.updateCarousel();
+      this.bindEvents();
+      this.startAutoplay();
+      this.updateIndicators();
+    }
+
+    bindEvents() {
+      this.prevBtn?.addEventListener('click', () => this.prevSlide());
+      this.nextBtn?.addEventListener('click', () => this.nextSlide());
+      
+      this.indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      // Pausar autoplay al hover
+      this.track?.addEventListener('mouseenter', () => this.stopAutoplay());
+      this.track?.addEventListener('mouseleave', () => this.startAutoplay());
+
+      // Responsive
+      window.addEventListener('resize', () => {
+        this.slidesToShow = this.getSlidesToShow();
+        this.updateCarousel();
+      });
+
+      // Touch/swipe support
+      this.addTouchSupport();
+    }
+
+    addTouchSupport() {
+      let startX = 0;
+      let isDragging = false;
+
+      this.track?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        this.stopAutoplay();
+      });
+
+      this.track?.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+      });
+
+      this.track?.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            this.nextSlide();
+          } else {
+            this.prevSlide();
+          }
+        }
+        
+        isDragging = false;
+        this.startAutoplay();
+      });
+    }
+
+    updateCarousel() {
+      if (!this.track) return;
+      
+      const translateX = -this.currentSlide * (this.cardWidth + 24); // 24px = gap
+      this.track.style.transform = `translateX(${translateX}px)`;
+      
+      this.updateButtons();
+      this.updateIndicators();
+    }
+
+    updateButtons() {
+      if (this.prevBtn) {
+        this.prevBtn.disabled = this.currentSlide === 0;
+      }
+      
+      if (this.nextBtn) {
+        this.nextBtn.disabled = this.currentSlide >= this.maxSlides - this.slidesToShow;
+      }
+    }
+
+    updateIndicators() {
+      this.indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === this.currentSlide);
+      });
+    }
+
+    nextSlide() {
+      if (this.currentSlide < this.maxSlides - this.slidesToShow) {
+        this.currentSlide++;
+      } else {
+        this.currentSlide = 0; // Loop back to start
+      }
+      this.updateCarousel();
+    }
+
+    prevSlide() {
+      if (this.currentSlide > 0) {
+        this.currentSlide--;
+      } else {
+        this.currentSlide = this.maxSlides - this.slidesToShow; // Loop to end
+      }
+      this.updateCarousel();
+    }
+
+    goToSlide(index) {
+      this.currentSlide = Math.min(index, this.maxSlides - this.slidesToShow);
+      this.updateCarousel();
+    }
+
+    startAutoplay() {
+      this.stopAutoplay();
+      this.autoplayInterval = setInterval(() => {
+        this.nextSlide();
+      }, 5000); // Cambiar cada 5 segundos
+    }
+
+    stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      }
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new TestimonialsCarousel();
+  });
+
+  // Intersection Observer para animaciones
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = '0.2s';
+        entry.target.classList.add('animate');
+      }
+    });
+  }, observerOptions);
+
+  // Observar elementos con animación
+  document.querySelectorAll('.split-text, .testimonial-card').forEach(el => {
+    observer.observe(el);
+  });
+</script>

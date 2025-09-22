@@ -1,0 +1,41 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    "src/**/*",        // TS, JS, MDX, etc.
+    "src/**/*.astro",  // Para que TS vea .astro y sus client directives
+    "astro.config.*",   // Para que TS conozca tu config de Astro
+    "src/env.d.ts",
+    "public/scripts"
+, "public/vendor/lenis.ts", "public/vendor/gsap.ts"  ],
+  "types": ["astro/client", "vite/client", "astro/astro-jsx", "node"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    // Mantén tus ESM y modern features
+    "target": "ESNext",
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    // Para imports con alias @/*
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@public/*": ["public/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@scripts/*": ["public/scripts/*"],
+      "@config/*": ["src/config/*"],
+      "@vendor/*": ["public/vendor/*"],
+      "@entry/*": ["src/entry/*"]
+    },
+    // JSX-preserve + Astro como source
+    "jsx": "preserve",
+    "jsxImportSource": "astro",
+    // Tipos que cargamos: Astro en cliente y Vite
+    // "types": ["astro/client", "vite/client"]
+  },
+}

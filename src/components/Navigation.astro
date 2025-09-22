@@ -1,0 +1,438 @@
+---
+import "@styles/navigation.css";
+
+const items = [
+  {
+    key: "home",
+    label: "home",
+    href: "#hero",
+    icon: `<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    key: "BeforeAfter",
+    label: "Before & After",
+    href: "#beforeafter",
+    icon: `<path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+    {
+    key: "WhyUs",
+    label: "Why Us",
+    href: "#whyus",
+    icon: `<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    key: "Gallery",
+    label: "Gallery",
+    href: "#gallery",
+    icon: `<path d="M4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1zM4 10h4v4H4v-4zM14 7h2v2h-2V7zM14 11h2v2h-2v-2zM10 7h2v2h-2V7zM10 11h2v2h-2v-2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    key: "contact",
+    label: "Contact Us",
+    href: "#contacto",
+    icon: `<path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+];
+
+const logo = "/icon.ico";
+---
+
+<!-- Skip link - Dark Mode -->
+<a
+  href="#hero"
+  class="fixed left-3 top-[-40px] z-[100] rounded-lg bg-blue-600 px-3 py-2 text-white font-bold shadow-lg transition-[top]
+          focus:top-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+  >Saltar al contenido</a
+>
+
+<!-- Scroll Progress Bar -->
+<div class="fixed top-0 left-0 right-0 z-[60] h-1">
+  <div 
+    id="scroll-progress" 
+    class="h-full bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 transform origin-left scale-x-0 transition-transform duration-150 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+  ></div>
+</div>
+
+<header
+  id="site-nav"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out
+          hidden lg:block border-b border-transparent"
+>
+  <!-- Desktop container -->
+  <div class="mx-auto w-full max-w-[1320px] px-3 xs:px-4 md:px-6">
+    <div class="grid h-16 md:h-20 grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center">
+      <!-- Brand - Dark Mode -->
+      <a
+        href="#hero"
+        class="group inline-flex items-center gap-3 lg:justify-self-start transition-all duration-300 font-light"
+        aria-label="Elegance Roofing - Inicio"
+      >
+        <div class="relative">
+          <img
+            src={logo}
+            alt=""
+            class="h-10 w-10 md:h-12 md:w-12 rounded-xl shadow-lg ring-1 ring-slate-600/50 transition-all duration-300
+                   group-hover:scale-105 group-hover:shadow-xl group-hover:ring-blue-500/50"
+          />
+          <div
+            class="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+          </div>
+          <!-- Glow effect on hover -->
+          <div
+            class="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/30 to-purple-600/30 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300 -z-10"
+          ></div>
+        </div>
+        <span
+          id="brand-text"
+          class="font-black text-xl md:text-2xl bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent
+                 transition-all duration-500 opacity-100 drop-shadow-sm"
+        >
+          Elegance Roofing
+        </span>
+      </a>
+
+      <!-- Desktop nav - Dark Mode -->
+      <nav class="justify-self-center">
+        <ul
+          id="top-menu"
+          class="flex items-center gap-1 rounded-full transition-all duration-500
+                 ring-1 ring-slate-700/50 shadow-lg backdrop-blur-xl px-2 py-2 
+                 bg-slate-800/90 border border-slate-700/30"
+        >
+          {
+            items.map((item) => (
+              <li class="shrink-0">
+                <a
+                  href={item.href}
+                  data-key={item.key}
+                  class="nav-link group relative flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold
+                       text-slate-300 transition-all duration-300 hover:text-slate-100 hover:bg-slate-700/50"
+                >
+                  <span class="nav-label transition-all duration-300">{item.label}</span>
+                  <!-- Hover gradient overlay -->
+                  <div
+                    class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-600/10 opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <!-- Active state background -->
+                  <div
+                    class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 
+                            border border-blue-500/30 shadow-[0_0_12px_rgba(59,130,246,0.3)]
+                            group-[.nav-active]:opacity-100 transition-all duration-300"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Enhanced dark mode styles for header */
+  .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    transition: left 0.5s ease;
+    border-radius: inherit;
+  }
+
+  .nav-link:hover::before {
+    left: 100%;
+  }
+
+  /* Active state enhancements */
+  .nav-link.nav-active {
+    color: rgb(96 165 250) !important; /* blue-400 */
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+  }
+
+  .nav-link.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: rgb(59 130 246);
+    border-radius: 50%;
+    animation: pulse-glow 2s infinite;
+    box-shadow: 0 0 8px rgb(59 130 246 / 0.6);
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(-50%) scale(1.2);
+      opacity: 0.8;
+      box-shadow: 0 0 12px rgb(59 130 246 / 0.8);
+    }
+  }
+
+  /* Brand text glow effect */
+  #brand-text {
+    background: linear-gradient(135deg, rgb(248 250 252), rgb(226 232 240));
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Top menu glassmorphism */
+  #top-menu {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Scroll progress bar enhancement */
+  #scroll-progress {
+    background: linear-gradient(90deg, 
+      rgb(59 130 246) 0%, 
+      rgb(147 51 234) 50%, 
+      rgb(6 182 212) 100%
+    );
+  }
+
+  #scroll-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    animation: shimmer 2s infinite ease-in-out;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Header state transitions */
+  #site-nav.bg-transparent {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+
+  #site-nav.bg-dark {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom-color: rgb(71 85 105);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1023px) {
+    #site-nav {
+      display: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .nav-link.nav-active {
+      background: rgb(59 130 246);
+      color: rgb(0 0 0) !important;
+    }
+
+    #top-menu {
+      border: 2px solid rgb(59 130 246);
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link::before {
+      transition: none;
+    }
+
+    .nav-link.nav-active::after {
+      animation: none;
+    }
+
+    #scroll-progress::after {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const header = document.getElementById("site-nav");
+    const progress = document.getElementById("scroll-progress");
+    const brandText = document.getElementById("brand-text");
+    const topMenu = document.getElementById("top-menu");
+
+    // Navigation links and smooth scroll
+    const topLinks = topMenu ? Array.from(topMenu.querySelectorAll('a[href^="#"]')) : [];
+    const allLinks = [...topLinks];
+
+    function setCurrent(a) {
+      const key = a?.dataset.key;
+      allLinks.forEach((x) => {
+        const isActive = x.dataset.key === key;
+        x.toggleAttribute("aria-current", isActive ? "page" : false);
+
+        // Add active styles
+        if (isActive) {
+          x.classList.add("nav-active");
+        } else {
+          x.classList.remove("nav-active");
+        }
+      });
+    }
+
+    // Smooth scroll handler
+    allLinks.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const hash = a.getAttribute("href");
+        if (!hash || hash === "#") return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        e.preventDefault();
+
+        // Click animation
+        a.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          a.style.transform = '';
+        }, 150);
+
+        if (window.__lenis?.scrollTo) {
+          window.__lenis.scrollTo(target, { offset: -80 });
+        } else {
+          const headerHeight = header?.offsetHeight || 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+
+        setCurrent(a);
+        history.replaceState(null, "", hash);
+      });
+    });
+
+    // Intersection Observer for active states
+    const pairs = allLinks
+      .filter((v, i, self) => self.findIndex((x) => x.dataset.key === v.dataset.key) === i)
+      .map((a) => ({a, el: document.querySelector(a.getAttribute("href"))}))
+      .filter((p) => p.el);
+
+    if ("IntersectionObserver" in window && pairs.length) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          let best = null;
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+            }
+          }
+          if (best) {
+            const link = pairs.find((p) => p.el === best.target)?.a;
+            if (link) setCurrent(link);
+          }
+        },
+        {threshold: [0.25, 0.5, 0.75], rootMargin: "-20% 0px -60% 0px"}
+      );
+      pairs.forEach((p) => io.observe(p.el));
+    }
+
+    // Enhanced scroll handler for dark mode
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const ratio = Math.max(0, Math.min(1, currentY / (max || 1)));
+
+          // Update progress bar
+          if (progress) {
+            progress.style.transform = `scaleX(${ratio})`;
+          }
+
+          // Determine scroll state
+          const atTop = currentY < 20;
+          const scrollingDown = currentY > lastY && currentY > 100;
+
+          // Header background transitions for dark mode
+          if (atTop) {
+            // At top - transparent header with styled menu
+            header.classList.remove("bg-dark");
+            header.classList.add("bg-transparent");
+            
+            if (topMenu) {
+              topMenu.classList.remove("bg-transparent");
+              topMenu.classList.add("bg-slate-800/90", "ring-slate-700/50", "border-slate-700/30");
+              topMenu.style.transform = "scale(1)";
+            }
+            
+            if (brandText) brandText.style.opacity = "1";
+            
+          } else {
+            // Scrolled - dark header with glass menu
+            header.classList.remove("bg-transparent");
+            header.classList.add("bg-dark");
+            
+            if (topMenu) {
+              if (scrollingDown) {
+                // Minimalist mode when scrolling down
+                topMenu.style.transform = "scale(0.95)";
+                topMenu.classList.add("bg-slate-800/70");
+              } else {
+                // Show full navigation when scrolling up
+                topMenu.style.transform = "scale(1)";
+                topMenu.classList.remove("bg-slate-800/70");
+                topMenu.classList.add("bg-slate-800/90");
+              }
+            }
+            
+            if (brandText) brandText.style.opacity = "1";
+          }
+
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    // Initial scroll state
+    onScroll();
+    window.addEventListener("scroll", onScroll, {passive: true});
+
+    // Set initial active link
+    const initial = topLinks.find((a) => a.getAttribute("href") === location.hash) || topLinks[0];
+    if (initial) setCurrent(initial);
+
+    // Add entry animation
+    setTimeout(() => {
+      header.style.opacity = '1';
+      header.style.transform = 'translateY(0)';
+    }, 100);
+  })();
+</script>

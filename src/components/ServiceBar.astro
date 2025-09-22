@@ -1,0 +1,201 @@
+---
+// RotatingServicesBar.astro
+const services = [
+  "RESIDENTIAL ROOFING",
+  "COMMERCIAL ROOFING", 
+  "ROOF REPAIR",
+  "ROOF REPLACEMENT",
+  "EMERGENCY SERVICES",
+  "ROOF INSPECTION",
+  "GUTTER INSTALLATION",
+  "STORM DAMAGE REPAIR",
+  "MAINTENANCE SERVICES",
+  "WARRANTY SERVICES"
+];
+
+// Icon options - choose one
+const separatorType = "svg" as "svg" | "emoji" | "asterisk";
+---
+
+<section class="rotating-services-section">
+  <div class="services-bar" id="services-bar">
+    <div class="services-track" id="services-track">
+      {services.map((service, index) => (
+        <div class="service-item">
+          <span class="service-text">{service}</span>
+          <span class="service-separator">
+            {separatorType === "svg" ? (
+              <svg class="separator-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            ) : separatorType === "emoji" ? "🏠" : "*"}
+          </span>
+        </div>
+      ))}
+      <!-- Duplicate for seamless loop -->
+      {services.map((service, index) => (
+        <div class="service-item">
+          <span class="service-text">{service}</span>
+          <span class="service-separator">
+            {separatorType === "svg" ? (
+              <svg class="separator-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            ) : separatorType === "emoji" ? "🏠" : "*"}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .rotating-services-section {
+    width: 100%;
+    overflow: hidden;
+    background: #000000;
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .services-bar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .service-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0 2rem;
+    font-family: 'Arial Black', Arial, sans-serif;
+  }
+
+  .service-separator {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .separator-icon {
+    width: 24px;
+    height: 24px;
+    color: #3b82f6;
+    fill: currentColor;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .services-bar {
+      height: 60px;
+    }
+    
+    .service-text {
+      font-size: 1.2rem;
+      padding: 0 1.5rem;
+    }
+    
+    .service-separator {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .services-bar {
+      height: 50px;
+    }
+    
+    .service-text {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+    
+    .service-separator {
+      font-size: 1.2rem;
+      padding: 0 0.75rem;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .services-track {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('services-track');
+    
+    if (!track) return;
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) return;
+
+    // Calculate the width of one complete set of services
+    const serviceItems = track.children;
+    const totalItems = serviceItems.length;
+    const halfItems = totalItems / 2;
+    
+    // Calculate total width of one set
+    let singleSetWidth = 0;
+    for (let i = 0; i < halfItems; i++) {
+      singleSetWidth += serviceItems[i].offsetWidth;
+    }
+
+    // Set up GSAP animation
+    gsap.set(track, { x: 0 });
+    
+    // Create infinite scrolling animation
+    gsap.to(track, {
+      x: -singleSetWidth,
+      duration: 30, // Adjust speed here (lower = faster)
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: function(x) {
+          return gsap.utils.wrap(-singleSetWidth, 0, parseFloat(x)) + "px";
+        }
+      }
+    });
+
+    // Optional: Pause on hover
+    const servicesBar = document.getElementById('services-bar');
+    let animation = gsap.getById ? gsap.getById('services-animation') : null;
+    
+    servicesBar.addEventListener('mouseenter', function() {
+      gsap.globalTimeline.timeScale(0.3); // Slow down on hover
+    });
+    
+    servicesBar.addEventListener('mouseleave', function() {
+      gsap.globalTimeline.timeScale(1); // Resume normal speed
+    });
+  });
+</script>

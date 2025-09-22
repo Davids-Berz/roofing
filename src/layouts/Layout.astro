@@ -1,0 +1,79 @@
+---
+import "@styles/global.css";
+
+const {
+  showWhatsapp = true,
+  whatsappUrl,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+    <!-- En tu layout.astro dentro de <head> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+		    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <!-- Lenis -->
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js" defer></script>
+	</head>
+	<body>
+		<slot />
+	</body>
+
+	    
+        {showWhatsapp && whatsappUrl && (
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="
+          fixed bottom-20 right-6 
+          inline-flex items-center justify-center
+          w-12 h-12
+          bg-green-500 hover:bg-green-600
+          text-white
+          rounded-full shadow-2xl
+          transition-colors duration-300
+          z-50
+        "
+        title="Escríbeme por WhatsApp"
+      >
+        <!-- Icono de WhatsApp -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          viewBox="0 0 32 32"
+          fill="currentColor"
+        >
+          <path d="M16.004 3.2a12.79 12.79 0 0 0-11.13 18.92L3.2 28.8l6.946-1.64A12.8 12.8 0 1 0 16.003 3.2zm6.694 18.267c-.294.82-1.522 1.507-2.112 1.6-.546.08-1.24.113-1.996-.126-.46-.147-1.06-.345-1.828-.676-3.22-1.39-5.323-4.82-5.486-5.053-.16-.227-1.31-1.74-1.31-3.32 0-1.58.827-2.35 1.12-2.673.293-.32.64-.4.854-.4.213 0 .426.006.613.012.2.007.467-.075.733.56.294.68 1.002 2.34 1.09 2.507.08.16.133.347.026.573-.107.227-.16.347-.32.533-.16.187-.34.4-.486.54-.16.16-.327.334-.14.653.187.32.827 1.36 1.774 2.2 1.22 1.087 2.254 1.42 2.573 1.58.32.16.507.134.693-.08.187-.214.8-.934 1.013-1.253.213-.32.427-.267.72-.16.294.107 1.84.867 2.147 1.027.307.16.507.24.586.374.08.134.08.767-.214 1.587z"/>
+        </svg>
+        <span
+          class="
+            absolute top-0 right-0
+            inline-flex items-center justify-center
+            w-5 h-5 rounded-full bg-red-500
+            text-white text-xs animate-bounce
+          "
+        >
+          1
+        </span>
+      </a>
+    )}
+
+ <script is:inline>
+      import { initLenis } from "../config/lenis";
+      import { initGsap } from "../config/gsap";
+      initGsap();
+      initLenis({ headerOffset: 64, enableLinkHijack: true });
+    </script>
+    
+  <script src="@vendor/global-animations.ts"></script>
+
+</html>

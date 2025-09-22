@@ -1,0 +1,670 @@
+---
+// BeforeAfterSlider.astro
+import beforeImg from "@assets/frames/antes.webp";
+import afterImg from "@assets/frames/despues.webp";
+import hero from "@assets/herob.png";
+---
+
+<section id="beforeafter" class="before-after-section">
+  <!-- Background igual al hero pero tema claro -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+
+    <!-- Background con gradiente base claro -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100"></div>
+
+    <!-- Gradiente mejorado para mejor contraste en tema claro -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white/80 via-blue-50/90 to-slate-50/95"></div>
+    <!-- Gradiente lateral para depth -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-50/60 via-transparent to-slate-50/80"></div>
+    <!-- Efectos de luz sutiles para tema claro -->
+    <div
+      class="absolute inset-0 bg-[radial-gradient(1400px_700px_at_20%_20%,rgba(59,130,246,.12),transparent_70%),radial-gradient(1200px_600px_at_80%_80%,rgba(14,165,233,.08),transparent_70%)]"
+    >
+    </div>
+  </div>
+
+  <!-- Content container -->
+  <div class="relative z-10 py-16 md:py-24">
+    <!-- Header Section -->
+    <div class="text-center mb-12 md:mb-16">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 backdrop-blur-md mb-6"
+      >
+        <span class="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+        <span class="text-blue-700 text-sm font-medium">Our Work Portfolio</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+        <span class="block">Real</span>
+        <span class="block bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 bg-clip-text text-transparent">
+          Transformations
+        </span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+        See the remarkable difference our expert roofing services make. From damaged, weathered roofs to completely restored,
+        protective systems that add value and security to your property.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Before & After Results</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Professional Quality</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Guaranteed Results</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="before-after-container">
+      <div class="image-container">
+        <!-- Before image -->
+        <img src={beforeImg.src} alt="Before roofing work image" class="before-image" />
+
+        <!-- After image -->
+        <img src={afterImg.src} alt="After roofing work image" class="after-image" />
+
+        <!-- Labels inside image -->
+        <div class="image-labels">
+          <span class="before-label">Before</span>
+          <span class="after-label">After</span>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider" id="slider">
+          <div class="slider-handle">
+            <svg class="slider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="m15 18-6-6 6-6"></path>
+              <path d="m9 6 6 6-6 6"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom description -->
+      <div class="description">
+        <div class="description-item">
+          <div class="description-icon before-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+          </div>
+          <div>
+            <h4>Original Condition</h4>
+            <p>Deteriorated roof with visible damage</p>
+          </div>
+        </div>
+
+        <div class="vs-divider">VS</div>
+
+        <div class="description-item">
+          <div class="description-icon after-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h4>Final Result</h4>
+            <p>Completely renovated and protected roof</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .before-after-section {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .before-after-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.08),
+        0 20px 25px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(148, 163, 184, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      border: 1px solid rgba(226, 232, 240, 0.5);
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: ew-resize;
+      border: 2px solid rgba(226, 232, 240, 0.6);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .before-image,
+    .after-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .after-image {
+      clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+    }
+
+    /* Labels dentro de la imagen */
+    .image-labels {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .before-label,
+    .after-label {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+      border: 1px solid;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .before-label {
+      background: rgba(239, 68, 68, 0.95);
+      color: white;
+      border-color: rgba(239, 68, 68, 0.8);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+
+    .after-label {
+      background: rgba(34, 197, 94, 0.95);
+      color: white;
+      border-color: rgba(34, 197, 94, 0.8);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    }
+
+    /* Slider mejorado para tema claro */
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.8));
+      cursor: ew-resize;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow:
+        0 0 20px rgba(59, 130, 246, 0.3),
+        0 0 40px rgba(59, 130, 246, 0.15);
+      border-radius: 2px;
+    }
+
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(59, 130, 246, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .slider-handle:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.15),
+        0 6px 12px rgba(0, 0, 0, 0.1),
+        0 0 0 4px rgba(59, 130, 246, 0.25);
+    }
+
+    .slider-icon {
+      width: 20px;
+      height: 20px;
+      color: #4b5563;
+      stroke-width: 2.5;
+    }
+
+    /* Descripción inferior para tema claro */
+    .description {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+      gap: 20px;
+    }
+
+    .description-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .description-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .before-icon {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: rgb(220, 38, 38);
+    }
+
+    .after-icon {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      color: rgb(22, 163, 74);
+    }
+
+    .description-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2;
+    }
+
+    .description h4 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgb(15, 23, 42);
+    }
+
+    .description p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: rgb(100, 116, 139);
+      line-height: 1.4;
+    }
+
+    .vs-divider {
+      padding: 12px 16px;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      color: rgb(37, 99, 235);
+      text-align: center;
+      flex-shrink: 0;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .before-after-container {
+        margin: 0 16px;
+        padding: 16px;
+      }
+
+      .image-container {
+        height: 350px;
+      }
+
+      .image-labels {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+      }
+
+      .before-label,
+      .after-label {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+
+      .description {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .vs-divider {
+        order: 1;
+        align-self: stretch;
+        padding: 8px;
+      }
+
+      .slider-handle {
+        width: 40px;
+        height: 40px;
+      }
+
+      .slider-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-container {
+        height: 280px;
+      }
+
+      .description-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .description-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .description-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      .before-label {
+        background: rgb(239, 68, 68);
+        border-color: rgb(239, 68, 68);
+      }
+
+      .after-label {
+        background: rgb(34, 197, 94);
+        border-color: rgb(34, 197, 94);
+      }
+
+      .before-after-container {
+        border: 2px solid #374151;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .before-image,
+      .after-image,
+      .slider-handle,
+      .before-label,
+      .after-label {
+        transition: none;
+      }
+    }
+
+    /* Dark mode support (en caso de que quieras mantener ambos) */
+    @media (prefers-color-scheme: dark) {
+      .before-after-section {
+        /* Mantener tema claro independientemente de la preferencia del sistema */
+      }
+    }
+  </style>
+
+  <script is:inline>
+    class BeforeAfterSlider {
+      constructor() {
+        this.slider = document.getElementById("slider");
+        this.container = this.slider?.parentElement;
+        this.afterImg = this.container?.querySelector(".after-image");
+        this.beforeLabel = this.container?.querySelector(".before-label");
+        this.afterLabel = this.container?.querySelector(".after-label");
+        this.isDragging = false;
+        this.animationId = null;
+
+        if (this.slider && this.container && this.afterImg) {
+          this.init();
+        }
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.addInstructions();
+      }
+
+      addInstructions() {
+        // Add initial instruction hint
+        const handle = this.slider.querySelector(".slider-handle");
+        if (handle) {
+          handle.setAttribute("title", "Drag to compare • Use keyboard arrows");
+          handle.setAttribute("aria-label", "Slider control to compare before and after");
+        }
+      }
+
+      setupEventListeners() {
+        // Mouse events
+        this.slider.addEventListener("mousedown", (e) => this.startDrag(e));
+        this.container.addEventListener("mousemove", (e) => this.drag(e));
+        document.addEventListener("mouseup", () => this.stopDrag());
+
+        // Touch events for mobile
+        this.slider.addEventListener("touchstart", (e) => this.startDrag(e));
+        this.container.addEventListener("touchmove", (e) => this.drag(e));
+        document.addEventListener("touchend", () => this.stopDrag());
+
+        // Click to position slider
+        this.container.addEventListener("click", (e) => this.clickToPosition(e));
+
+        // Keyboard navigation
+        this.slider.addEventListener("keydown", (e) => this.handleKeyboard(e));
+        this.slider.setAttribute("tabindex", "0");
+        this.slider.setAttribute("role", "slider");
+        this.slider.setAttribute("aria-valuemin", "0");
+        this.slider.setAttribute("aria-valuemax", "100");
+        this.slider.setAttribute("aria-valuenow", "50");
+
+        // Add hover effects
+        this.slider.addEventListener("mouseenter", () => this.onHoverStart());
+        this.slider.addEventListener("mouseleave", () => this.onHoverEnd());
+
+        // Auto-demo on load (optional)
+        this.startAutoDemo();
+      }
+
+      startDrag(e) {
+        this.isDragging = true;
+        e.preventDefault();
+        document.body.style.cursor = "ew-resize";
+
+        // Add visual feedback
+        this.slider.style.transform = "translateX(-50%) scale(1.05)";
+
+        // Stop auto demo if running
+        this.stopAutoDemo();
+      }
+
+      drag(e) {
+        if (!this.isDragging) return;
+
+        e.preventDefault();
+        const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+        this.updateSlider(clientX);
+      }
+
+      stopDrag() {
+        if (!this.isDragging) return;
+
+        this.isDragging = false;
+        document.body.style.cursor = "";
+        this.slider.style.transform = "translateX(-50%)";
+      }
+
+      clickToPosition(e) {
+        if (this.isDragging || e.target === this.slider || this.slider.contains(e.target)) return;
+
+        const clientX = e.type.includes("touch") ? e.changedTouches[0].clientX : e.clientX;
+        this.updateSlider(clientX);
+        this.stopAutoDemo();
+      }
+
+      handleKeyboard(e) {
+        const step = 5; // 5% increments
+        const containerRect = this.container.getBoundingClientRect();
+        const currentPosition = (this.slider.offsetLeft / containerRect.width) * 100;
+
+        let newPosition = currentPosition;
+
+        switch (e.key) {
+          case "ArrowLeft":
+          case "a":
+          case "A":
+            newPosition = Math.max(0, currentPosition - step);
+            break;
+          case "ArrowRight":
+          case "d":
+          case "D":
+            newPosition = Math.min(100, currentPosition + step);
+            break;
+          case "Home":
+            newPosition = 0;
+            break;
+          case "End":
+            newPosition = 100;
+            break;
+          case " ":
+          case "Enter":
+            newPosition = 50;
+            break;
+          default:
+            return;
+        }
+
+        e.preventDefault();
+        this.setSliderPosition(newPosition);
+        this.stopAutoDemo();
+      }
+
+      updateSlider(clientX) {
+        const containerRect = this.container.getBoundingClientRect();
+        const percentage = ((clientX - containerRect.left) / containerRect.width) * 100;
+        this.setSliderPosition(percentage);
+      }
+
+      setSliderPosition(percentage) {
+        const clampedPercentage = Math.max(0, Math.min(100, percentage));
+
+        this.slider.style.left = clampedPercentage + "%";
+        this.afterImg.style.clipPath = `polygon(${clampedPercentage}% 0%, 100% 0%, 100% 100%, ${clampedPercentage}% 100%)`;
+
+        // Update accessibility
+        this.slider.setAttribute("aria-valuenow", Math.round(clampedPercentage));
+
+        // Update label opacity based on visibility
+        if (this.beforeLabel && this.afterLabel) {
+          const beforeOpacity = clampedPercentage < 25 ? 1 : 0.7;
+          const afterOpacity = clampedPercentage > 75 ? 1 : 0.7;
+
+          this.beforeLabel.style.opacity = beforeOpacity;
+          this.afterLabel.style.opacity = afterOpacity;
+        }
+      }
+
+      onHoverStart() {
+        this.slider.style.boxShadow = `
+        0 0 30px rgba(59, 130, 246, 0.4),
+        0 0 60px rgba(59, 130, 246, 0.2)
+      `;
+      }
+
+      onHoverEnd() {
+        this.slider.style.boxShadow = `
+        0 0 20px rgba(59, 130, 246, 0.3),
+        0 0 40px rgba(59, 130, 246, 0.15)
+      `;
+      }
+
+      // Auto demo functionality
+      startAutoDemo() {
+        let direction = 1;
+        let position = 50;
+        let startTime = Date.now();
+
+        const animate = () => {
+          const elapsed = Date.now() - startTime;
+
+          // Stop after 3 seconds
+          if (elapsed > 3000) {
+            this.setSliderPosition(50);
+            return;
+          }
+
+          position += direction * 0.8;
+
+          if (position >= 80 || position <= 20) {
+            direction *= -1;
+          }
+
+          this.setSliderPosition(position);
+          this.animationId = requestAnimationFrame(animate);
+        };
+
+        // Start demo after 1 second
+        setTimeout(() => {
+          this.animationId = requestAnimationFrame(animate);
+        }, 1000);
+      }
+
+      stopAutoDemo() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+          this.animationId = null;
+        }
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      new BeforeAfterSlider();
+    });
+  </script>
+</section>
