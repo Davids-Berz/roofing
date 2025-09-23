@@ -23,7 +23,7 @@ jobs:
       # Instala Bun
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.x
+          bun-version: 1.1.30
 
       # Instala deps usando bun.lockb
       - name: Install deps
